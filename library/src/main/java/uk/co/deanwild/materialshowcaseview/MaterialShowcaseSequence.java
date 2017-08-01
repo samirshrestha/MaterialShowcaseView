@@ -18,14 +18,16 @@ public class MaterialShowcaseSequence implements IDetachedListener {
 
     private OnSequenceItemShownListener mOnItemShownListener = null;
     private OnSequenceItemDismissedListener mOnItemDismissedListener = null;
+    private boolean useFadeAnimation;
 
     public MaterialShowcaseSequence(Activity activity) {
         mActivity = activity;
         mShowcaseQueue = new LinkedList<>();
     }
 
-    public MaterialShowcaseSequence(Activity activity, String sequenceID) {
+    public MaterialShowcaseSequence(Activity activity, String sequenceID, boolean useFadeAnimation) {
         this(activity);
+        this.useFadeAnimation = useFadeAnimation;
         this.singleUse(sequenceID);
     }
 
@@ -36,12 +38,15 @@ public class MaterialShowcaseSequence implements IDetachedListener {
 
     public MaterialShowcaseSequence addSequenceItem(View targetView, String title, String content, String dismissText) {
 
-        MaterialShowcaseView sequenceItem = new MaterialShowcaseView.Builder(mActivity)
-                .setTarget(targetView)
+        MaterialShowcaseView.Builder builder = new MaterialShowcaseView.Builder(mActivity);
+        builder.setTarget(targetView)
                 .setTitleText(title)
                 .setDismissText(dismissText)
-                .setContentText(content)
-                .build();
+                .setContentText(content);
+        if (useFadeAnimation) {
+            builder.useFadeAnimation();
+        }
+        MaterialShowcaseView sequenceItem = builder.build();
 
         if (mConfig != null) {
             sequenceItem.setConfig(mConfig);

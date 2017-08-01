@@ -9,14 +9,14 @@ import uk.co.deanwild.materialshowcaseview.shape.Shape;
 
 public class ShowcaseConfig {
 
-    public static final String DEFAULT_MASK_COLOUR = "#dd335075";
+    public static final String DEFAULT_MASK_COLOR = "#dd335075";
     public static final long DEFAULT_FADE_TIME = 300;
     public static final long DEFAULT_DELAY = 0;
     public static final Shape DEFAULT_SHAPE = new CircleShape();
     public static final int DEFAULT_SHAPE_PADDING = 10;
 
     private long mDelay = DEFAULT_DELAY;
-    private int mMaskColour;
+    private int mMaskColor;
     private Typeface mDismissTextStyle = Typeface.DEFAULT_BOLD;
 
     private int mContentTextColor;
@@ -27,7 +27,7 @@ public class ShowcaseConfig {
     private boolean renderOverNav = false;
 
     public ShowcaseConfig() {
-        mMaskColour = Color.parseColor(ShowcaseConfig.DEFAULT_MASK_COLOUR);
+        mMaskColor = Color.parseColor(ShowcaseConfig.DEFAULT_MASK_COLOR);
         mContentTextColor = Color.parseColor("#ffffff");
         mDismissTextColor = Color.parseColor("#ffffff");
     }
@@ -41,11 +41,11 @@ public class ShowcaseConfig {
     }
 
     public int getMaskColor() {
-        return mMaskColour;
+        return mMaskColor;
     }
 
     public void setMaskColor(int maskColor) {
-        mMaskColour = maskColor;
+        mMaskColor = maskColor;
     }
 
     public int getContentTextColor() {

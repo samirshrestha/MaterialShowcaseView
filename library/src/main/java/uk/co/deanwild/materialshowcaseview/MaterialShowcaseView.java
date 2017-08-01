@@ -64,7 +64,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
     private boolean mDismissOnTouch = false;
     private boolean mShouldRender = false; // flag to decide when we should actually render
     private boolean mRenderOverNav = false;
-    private int mMaskColour;
+    private int mMaskColor;
     private IAnimationFactory mAnimationFactory;
     private boolean mShouldAnimate = true;
     private boolean mUseFadeAnimation = false;
@@ -114,7 +114,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         // consume touch events
         setOnTouchListener(this);
 
-        mMaskColour = Color.parseColor(ShowcaseConfig.DEFAULT_MASK_COLOUR);
+        mMaskColor = Color.parseColor(ShowcaseConfig.DEFAULT_MASK_COLOR);
         setVisibility(INVISIBLE);
 
 
@@ -129,7 +129,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
 
     /**
      * Interesting drawing stuff.
-     * We draw a block of semi transparent colour to fill the whole screen then we draw of transparency
+     * We draw a block of semi transparent color to fill the whole screen then we draw of transparency
      * to create a circular "viewport" through to the underlying content
      *
      * @param canvas
@@ -166,7 +166,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
 
         // draw solid background
-        mCanvas.drawColor(mMaskColour);
+        mCanvas.drawColor(mMaskColor);
 
         // Prepare eraser Paint if needed
         if (mEraser == null) {
@@ -383,21 +383,21 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         }
     }
 
-    private void setTitleTextColor(int textColour) {
+    private void setTitleTextColor(int textColor) {
         if (mTitleTextView != null) {
-            mTitleTextView.setTextColor(textColour);
+            mTitleTextView.setTextColor(textColor);
         }
     }
 
-    private void setContentTextColor(int textColour) {
+    private void setContentTextColor(int textColor) {
         if (mContentTextView != null) {
-            mContentTextView.setTextColor(textColour);
+            mContentTextView.setTextColor(textColor);
         }
     }
 
-    private void setDismissTextColor(int textColour) {
+    private void setDismissTextColor(int textColor) {
         if (mDismissButton != null) {
-            mDismissButton.setTextColor(textColour);
+            mDismissButton.setTextColor(textColor);
         }
     }
 
@@ -413,8 +413,8 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         mShouldRender = shouldRender;
     }
 
-    private void setMaskColour(int maskColour) {
-        mMaskColour = maskColour;
+    private void setMaskColor(int maskColor) {
+        mMaskColor = maskColor;
     }
 
     private void setDelay(long delayInMillis) {
@@ -474,7 +474,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         setDismissTextColor(config.getDismissTextColor());
         setDismissStyle(config.getDismissTextStyle());
 
-        setMaskColour(config.getMaskColor());
+        setMaskColor(config.getMaskColor());
         setShape(config.getShape());
         setShapePadding(config.getShapePadding());
         setRenderOverNavigationBar(config.getRenderOverNavigationBar());
@@ -609,23 +609,23 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
             return this;
         }
 
-        public Builder setMaskColour(int maskColour) {
-            showcaseView.setMaskColour(maskColour);
+        public Builder setMaskColor(int maskColor) {
+            showcaseView.setMaskColor(maskColor);
             return this;
         }
 
-        public Builder setTitleTextColor(int textColour) {
-            showcaseView.setTitleTextColor(textColour);
+        public Builder setTitleTextColor(int textColor) {
+            showcaseView.setTitleTextColor(textColor);
             return this;
         }
 
-        public Builder setContentTextColor(int textColour) {
-            showcaseView.setContentTextColor(textColour);
+        public Builder setContentTextColor(int textColor) {
+            showcaseView.setContentTextColor(textColor);
             return this;
         }
 
-        public Builder setDismissTextColor(int textColour) {
-            showcaseView.setDismissTextColor(textColour);
+        public Builder setDismissTextColor(int textColor) {
+            showcaseView.setDismissTextColor(textColor);
             return this;
         }
 
