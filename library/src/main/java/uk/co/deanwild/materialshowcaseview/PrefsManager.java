@@ -63,6 +63,17 @@ public class PrefsManager {
         internal.edit().clear().apply();
     }
 
+    /**
+     * Set finished the provided showcase id
+     *
+     * @param context    context to access the shared preference
+     * @param showcaseID showcase id to mark as finished
+     */
+    public static void set(Context context, String showcaseID) {
+        SharedPreferences internal = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        internal.edit().putInt(STATUS + showcaseID, SEQUENCE_FINISHED).apply();
+    }
+
     public void close() {
         context = null;
     }
