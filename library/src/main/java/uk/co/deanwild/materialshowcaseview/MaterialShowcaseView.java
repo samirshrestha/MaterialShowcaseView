@@ -146,7 +146,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         final int height = getMeasuredHeight();
 
         // don't bother drawing if there is nothing to draw on
-        if(width <= 0 || height <= 0) return;
+        if (width <= 0 || height <= 0) return;
 
         // build a new canvas if needed i.e first pass or new dimensions
         if (mBitmap == null || mCanvas == null || mOldHeight != height || mOldWidth != width) {
@@ -206,8 +206,8 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         if (mDismissOnTouch) {
             hide();
         }
-        if(mTargetTouchable && mTarget.getBounds().contains((int)event.getX(), (int)event.getY())){
-            if(mDismissOnTargetTouch){
+        if (mTargetTouchable && mTarget.getBounds().contains((int) event.getX(), (int) event.getY())) {
+            if (mDismissOnTargetTouch) {
                 hide();
             }
             return false;
@@ -218,7 +218,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
 
     private void notifyOnDisplayed() {
 
-        if(mListeners != null){
+        if (mListeners != null) {
             for (IShowcaseListener listener : mListeners) {
                 listener.onShowcaseDisplayed(this);
             }
@@ -425,11 +425,11 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         mFadeDurationInMillis = fadeDurationInMillis;
     }
 
-    private void setTargetTouchable(boolean targetTouchable){
+    private void setTargetTouchable(boolean targetTouchable) {
         mTargetTouchable = targetTouchable;
     }
 
-    private void setDismissOnTargetTouch(boolean dismissOnTargetTouch){
+    private void setDismissOnTargetTouch(boolean dismissOnTargetTouch) {
         mDismissOnTargetTouch = dismissOnTargetTouch;
     }
 
@@ -439,7 +439,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
 
     public void addShowcaseListener(IShowcaseListener showcaseListener) {
 
-        if(mListeners != null)
+        if (mListeners != null)
             mListeners.add(showcaseListener);
     }
 
@@ -586,20 +586,20 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
 
         /**
          * Set whether or not the target view can be touched while the showcase is visible.
-         *
+         * <p>
          * False by default.
          */
-        public Builder setTargetTouchable(boolean targetTouchable){
+        public Builder setTargetTouchable(boolean targetTouchable) {
             showcaseView.setTargetTouchable(targetTouchable);
             return this;
         }
 
         /**
          * Set whether or not the showcase should dismiss when the target is touched.
-         *
+         * <p>
          * True by default.
          */
-        public Builder setDismissOnTargetTouch(boolean dismissOnTargetTouch){
+        public Builder setDismissOnTargetTouch(boolean dismissOnTargetTouch) {
             showcaseView.setDismissOnTargetTouch(dismissOnTargetTouch);
             return this;
         }
@@ -717,10 +717,9 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
 
             if (showcaseView.mAnimationFactory == null) {
                 // create our animation factory
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !showcaseView.mUseFadeAnimation) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !showcaseView.mUseFadeAnimation) {
                     showcaseView.setAnimationFactory(new CircularRevealAnimationFactory());
-                }
-                else {
+                } else {
                     showcaseView.setAnimationFactory(new FadeAnimationFactory());
                 }
             }
@@ -795,11 +794,13 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
             @Override
             public void run() {
 
-                if (mShouldAnimate) {
-                    animateIn();
-                } else {
-                    setVisibility(VISIBLE);
-                    notifyOnDisplayed();
+                if (mHandler != null) {
+                    if (mShouldAnimate) {
+                        animateIn();
+                    } else {
+                        setVisibility(VISIBLE);
+                        notifyOnDisplayed();
+                    }
                 }
             }
         }, mDelayInMillis);
